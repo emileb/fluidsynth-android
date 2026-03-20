@@ -1082,6 +1082,32 @@ fluid_settings_copystr(fluid_settings_t *settings, const char *name,
     return retval;
 }
 
+int fluid_settings_getstr(fluid_settings_t* settings,
+                                 const char* name,
+                                 char** out_str)
+{
+    char tmp[1024];
+
+    /* Try to copy the string into a temporary buffer */
+    int ok = fluid_settings_copystr(settings, name, tmp, sizeof(tmp));
+    if (!ok) {
+        *out_str = NULL;
+        return 0;   /* same semantics as old API: 0 = failure */
+    }
+
+    /* Allocate memory for the caller */
+    size_t len = strlen(tmp) + 1;
+    char* buf = malloc(len);
+    if (!buf) {
+        *out_str = NULL;
+        return 0;
+    }
+
+    memcpy(buf, tmp, len);
+    *out_str = buf;
+    return 1;       /* success */
+}
+
 /**
  * Duplicate the value of a string setting
  *

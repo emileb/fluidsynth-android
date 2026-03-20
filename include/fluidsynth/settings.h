@@ -123,6 +123,10 @@ FLUIDSYNTH_API
 int fluid_settings_copystr(fluid_settings_t *settings, const char *name, char *str, int len);
 
 FLUIDSYNTH_API
+int fluid_settings_getstr(fluid_settings_t* settings,
+                          const char* name,
+                          char** out_str);
+FLUIDSYNTH_API
 int fluid_settings_dupstr(fluid_settings_t *settings, const char *name, char **str);
 
 FLUIDSYNTH_API

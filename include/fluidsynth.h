@@ -114,6 +114,11 @@ extern "C" {
 #include "fluidsynth/ladspa.h"
 
 
+#define FLUID_CHORUS_MOD_SINE		0
+#define FLUID_CHORUS_MOD_TRIANGLE	1
+#define FLUID_CHORUS_DEFAULT_TYPE FLUID_CHORUS_MOD_SINE
+
+
 #ifdef __cplusplus
 }
 #endif
